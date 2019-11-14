@@ -6,14 +6,12 @@ Array.from(thumbUp).forEach(function(element) {
         const name = this.parentNode.parentNode.childNodes[1].innerText
         const msg = this.parentNode.parentNode.childNodes[3].innerText
         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-        // const thumbDown = parseFloat(this.parentNode.parentNode.childNodes[7].innerText)
         fetch('messages', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             'name': name,
-            'msg': msg,
-            'thumbUp':thumbUp
+            'thumbUp': msg,
           })
         })
         .then(response => {

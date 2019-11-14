@@ -39,24 +39,18 @@ app.post('/messages', (req, res) => {
   })
 })
 
-
-
 app.put('/messages', (req, res) => {
-  let input = req.body.name, msg
+  let input = req.body.name
   let reverse = input.toLowerCase().split("").reverse().join("")
   if(input.toLowerCase() === reverse){
     var answer = "This is a Palindrome!!";
   } else if (input.toLowerCase() !== reverse) {
     var answer = "This is NOT a Palindrome";
   }
-  // this is an object
-  // const sendAnswer = {
-  //   palindrome:answer
-  // }
   db.collection('messages')
   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
     $set: {
-      thumbUp:answer,
+      msg: answer,
     }
   }, {
     sort: {_id: -1},
@@ -66,8 +60,6 @@ app.put('/messages', (req, res) => {
     res.send(result)
   })
 })
-
-
 
 app.delete('/messages', (req, res) => {
   db.collection('messages').findOneAndDelete({name: req.body.name}, (err, result) => {
