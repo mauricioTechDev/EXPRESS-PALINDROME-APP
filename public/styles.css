@@ -1,0 +1,12 @@
+section{
+  text-align: center;
+}
+body{
+  background: gray;
+}
+h3{
+  margin-top: 40px;
+}
+ul{
+  list-style: none;
+}
